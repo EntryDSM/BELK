@@ -1,0 +1,51 @@
+filebeat.config:
+  modules:
+    path: ${path.config}/modules.d/*.yml
+    reload.enabled: false
+
+processors:
+  - add_cloud_metadata: ~
+  - add_docker_metadata: ~
+
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - "/usr/share/filebeat/logs/jindo/development.log"
+    multiline.pattern: '^method='
+    multiline.negate: true
+    multiline.match: after
+    include_lines: ['^method=']
+    fields:
+      server: jindo
+
+  - type: log
+    enabled: true
+    paths:
+      - "/usr/share/filebeat/logs/husky/.log"
+    fields:
+      server: husky
+
+  - type: log
+    enabled: true
+    paths:
+      - "/usr/share/filebeat/logs/samoyed/.log"
+    fields:
+      server: samoyed
+
+  - type: log
+    enabled: true
+    paths:
+      - "/usr/share/filebeat/logs/schnauzer/.log"
+    fields:
+      server: schnauzer
+  
+  - type: log
+    enabled: true
+    paths:
+      - "/usr/share/filebeat/logs/print_admission_ticket/.log"
+    fields:
+      server: print_admission_ticket
+
+output.logstash:
+  hosts: ['logstash:5001']
