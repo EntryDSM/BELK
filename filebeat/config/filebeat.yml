@@ -36,9 +36,18 @@ filebeat.inputs:
   - type: log
     enabled: true
     paths:
-      - "/usr/share/filebeat/logs/schnauzer/.log"
+      - "/usr/share/filebeat/logs/schnauzer/http.log"
     fields:
       server: schnauzer
+      classification: http
+  
+  - type: log
+    enabled: true
+    paths:
+      - "/usr/share/filebeat/logs/schnauzer/socket.log"
+    fields:
+      server: schnauzer
+      classification: socket
   
   - type: log
     enabled: true
