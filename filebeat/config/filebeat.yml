@@ -22,7 +22,8 @@ filebeat.inputs:
   - type: log
     enabled: true
     paths:
-      - "/usr/share/filebeat/logs/husky/.log"
+      - "/usr/share/filebeat/logs/husky/husky.log"
+    include_lines: ['^I,']
     fields:
       server: husky
 
