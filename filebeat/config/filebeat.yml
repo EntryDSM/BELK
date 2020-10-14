@@ -49,13 +49,6 @@ filebeat.inputs:
     fields:
       server: schnauzer
       classification: socket
-  
-  - type: log
-    enabled: true
-    paths:
-      - "/usr/share/filebeat/logs/print_admission_ticket/.log"
-    fields:
-      server: print_admission_ticket
 
 output.logstash:
   hosts: ['logstash:5001']
