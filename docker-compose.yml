@@ -78,7 +78,7 @@ services:
         target: /usr/share/filebeat/filebeat.yml
         read_only: true
       - type: bind
-        source: ./logs
+        source: /home/entrydsm/munchkin/log
         target: /usr/share/filebeat/logs
     networks:
       - elk
